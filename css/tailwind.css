@@ -7,8 +7,7 @@
 /* Core theme configuration */
 @theme {
   /* Font families */
-  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif: 'Georgia', 'Times New Roman', serif;
 
   /* Colors */
   /* Copied from https://tailwindcss.com/docs/theme#default-theme-variable-reference */
@@ -81,9 +80,10 @@
 @layer utilities {
   .prose {
     & a {
-      color: var(--color-primary-500);
+      color: #1a0dab;
+      text-decoration: underline;
       &:hover {
-        color: var(--color-primary-600);
+        color: #1a0dab;
       }
       & code {
         color: var(--color-primary-400);
@@ -172,4 +172,10 @@ input:-webkit-autofill:focus {
 .linkicon {
   display: inline-block;
   vertical-align: middle;
+}
+h1,
+h2,
+h3 {
+  font-weight: normal;
+  font-size: xx-large;
 }
