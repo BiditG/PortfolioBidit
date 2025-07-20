@@ -190,17 +190,6 @@ export default function Home({ posts }) {
             </div>
           )}
         </section>
-
-        {/* ------------------------- */}
-        {/* 4. Newsletter Section */}
-        {/* ------------------------- */}
-        {siteMetadata.newsletter?.provider && (
-          <section className="pt-20">
-            <div className="flex items-center justify-center">
-              <NewsletterForm />
-            </div>
-          </section>
-        )}
       </div>
     </>
   )
