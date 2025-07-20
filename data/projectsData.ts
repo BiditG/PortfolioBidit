@@ -7,20 +7,28 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
+    title: 'RAG-based Chat Application',
+    description: `A Retrieval-Augmented Generation (RAG) powered chatbot using LangChain and Ollama, capable of processing custom knowledge sources like PDFs with conversational memory.`,
+    imgSrc: '/static/images/rag-chatbot.png',
+    href: 'https://github.com/BiditG/RAG-based-chat-application',
   },
   {
-    title: 'The Time Machine',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten headphones with this simple yet affordable solution.`,
-    imgSrc: '/static/images/time-machine.jpg',
-    href: '/blog/the-time-machine',
+    title: 'Coffee Shop Website',
+    description: `A sleek, responsive website for a coffee shop featuring product pages, animations, and modern design using HTML, CSS, and JavaScript.`,
+    imgSrc: '/static/images/coffee-shop.png',
+    href: 'https://github.com/BiditG/Coffee-shop-website',
+  },
+  {
+    title: 'Stock Management Software',
+    description: `A Python-based inventory management system designed for local businesses to manage stock levels, product categories, and sales efficiently.`,
+    imgSrc: '/static/images/stock-management.png',
+    href: 'https://github.com/BiditG/Stock-management-software',
+  },
+  {
+    title: 'Hotel Booking Website',
+    description: `A hotel booking platform built with full CRUD functionality and user-friendly UI to manage listings, availability, and reservations.`,
+    imgSrc: '/static/images/hotel-booking.png',
+    href: 'https://github.com/BiditG/Hotel-Booking-Website',
   },
 ]
 
