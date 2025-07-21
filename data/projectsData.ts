@@ -7,8 +7,8 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'RAG-based Chat Application',
-    description: `A Retrieval-Augmented Generation (RAG) powered chatbot using LangChain and Ollama, capable of processing custom knowledge sources like PDFs with conversational memory.`,
+    title: 'RAG-based MCQ Generator',
+    description: `A Retrieval-Augmented Generation (RAG) powered mcq-generator using LangChain and Ollama, capable of processing custom knowledge sources like PDFs with conversational memory.`,
     imgSrc: '/static/images/rag-chatbot.png',
     href: 'https://github.com/BiditG/RAG-based-chat-application',
   },
