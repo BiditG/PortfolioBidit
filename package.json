@@ -21,6 +21,8 @@
     "contentlayer2": "0.5.5",
     "cross-env": "^7.0.3",
     "esbuild": "0.25.2",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.16.0",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.2",
     "hast-util-from-html-isomorphic": "^2.0.0",
@@ -51,8 +53,6 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.2.0",
-    "@eslint/js": "^9.16.0",
     "@types/mdx": "^2.0.12",
     "@types/react": "^19.0.8",
     "@typescript-eslint/eslint-plugin": "^8.12.0",
