@@ -66,13 +66,13 @@ export default function Home({ posts }) {
               {
                 label: 'LLMs (LangChain, Ollama)',
                 level: 4,
-                icon: '/icons/llm.svg',
+                icon: '/icons/LLM.svg',
                 color: 'from-purple-500 to-purple-700',
               },
               {
                 label: 'Python',
                 level: 3,
-                icon: '/icons/python.svg',
+                icon: '/icons/Python.svg',
                 color: 'from-yellow-400 to-yellow-600',
               },
               {
