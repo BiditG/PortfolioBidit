@@ -11,6 +11,14 @@ export interface Certificate {
 
 const certificatesData: Certificate[] = [
   {
+    title: 'Introduction to Machine Learning: Art of the Possible',
+    issuer: 'AWS',
+    date: 'July 2025',
+    description: 'Introductory course on machine learning and their practical applications.',
+    certUrl: '',
+    logoUrl: '/certificates/art.png',
+  },
+  {
     title: 'AI Agents for Beginners',
     issuer: 'Simplilearn',
     date: 'July 2025',
