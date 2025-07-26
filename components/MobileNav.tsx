@@ -42,6 +42,7 @@ const MobileNav = () => {
           />
         </svg>
       </button>
+
       <Transition appear show={navShow} as={Fragment} unmount={false}>
         <Dialog as="div" onClose={onToggleNav} unmount={false}>
           <TransitionChild
@@ -54,7 +55,7 @@ const MobileNav = () => {
             leaveTo="opacity-0"
             unmount={false}
           >
-            <div className="fixed inset-0 z-60 bg-black/25" />
+            <div className="fixed inset-0 z-60 bg-black/30 backdrop-blur-sm" />
           </TransitionChild>
 
           <TransitionChild
@@ -70,13 +71,13 @@ const MobileNav = () => {
             <DialogPanel className="fixed top-0 left-0 z-70 h-full w-full bg-white/95 duration-300 dark:bg-gray-950/98">
               <nav
                 ref={navRef}
-                className="mt-8 flex h-full basis-0 flex-col items-start overflow-y-auto pt-2 pl-12 text-left"
+                className="animate-slide-in mt-12 flex h-full flex-col items-start gap-6 overflow-y-auto px-10"
               >
                 {headerNavLinks.map((link) => (
                   <Link
                     key={link.title}
                     href={link.href}
-                    className="hover:text-primary-500 dark:hover:text-primary-400 mb-4 py-2 pr-4 text-2xl font-bold tracking-widest text-gray-900 outline outline-0 dark:text-gray-100"
+                    className="hover:text-primary-500 dark:hover:text-primary-400 text-xl font-semibold tracking-wide text-gray-900 transition-transform duration-200 ease-in-out hover:translate-x-1 dark:text-gray-100"
                     onClick={onToggleNav}
                   >
                     {link.title}
@@ -85,7 +86,7 @@ const MobileNav = () => {
               </nav>
 
               <button
-                className="hover:text-primary-500 dark:hover:text-primary-400 fixed top-7 right-4 z-80 h-16 w-16 p-4 text-gray-900 dark:text-gray-100"
+                className="hover:text-primary-500 dark:hover:text-primary-400 fixed top-7 right-4 z-80 h-12 w-12 p-3 text-gray-900 transition-colors duration-200 dark:text-gray-100"
                 aria-label="Toggle Menu"
                 onClick={onToggleNav}
               >
@@ -101,6 +102,24 @@ const MobileNav = () => {
           </TransitionChild>
         </Dialog>
       </Transition>
+
+      {/* Animation styling */}
+      <style jsx global>{`
+        @keyframes slideInFade {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-slide-in > * {
+          animation: slideInFade 0.4s ease forwards;
+        }
+      `}</style>
     </>
   )
 }

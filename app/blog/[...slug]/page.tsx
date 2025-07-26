@@ -21,33 +21,34 @@ const layouts = {
   PostBanner,
 }
 
-export async function generateMetadata(props: {
+// ✅ FIXED generateMetadata: use `await params`
+export async function generateMetadata({
+  params,
+}: {
   params: Promise<{ slug: string[] }>
 }): Promise<Metadata | undefined> {
-  const params = await props.params
-  const slug = decodeURI(params.slug.join('/'))
-  const post = allBlogs.find((p) => p.slug === slug)
-  const authorList = post?.authors || ['default']
+  const { slug } = await params
+  const decodedSlug = decodeURI(slug.join('/'))
+  const post = allBlogs.find((p) => p.slug === decodedSlug)
+  if (!post) return
+
+  const authorList = post.authors || ['default']
   const authorDetails = authorList.map((author) => {
-    const authorResults = allAuthors.find((p) => p.slug === author)
-    return coreContent(authorResults as Authors)
+    const result = allAuthors.find((p) => p.slug === author)
+    return coreContent(result as Authors)
   })
-  if (!post) {
-    return
-  }
 
   const publishedAt = new Date(post.date).toISOString()
   const modifiedAt = new Date(post.lastmod || post.date).toISOString()
   const authors = authorDetails.map((author) => author.name)
+
   let imageList = [siteMetadata.socialBanner]
   if (post.images) {
     imageList = typeof post.images === 'string' ? [post.images] : post.images
   }
-  const ogImages = imageList.map((img) => {
-    return {
-      url: img && img.includes('http') ? img : siteMetadata.siteUrl + img,
-    }
-  })
+  const ogImages = imageList.map((img) => ({
+    url: img.includes('http') ? img : siteMetadata.siteUrl + img,
+  }))
 
   return {
     title: post.title,
@@ -55,12 +56,12 @@ export async function generateMetadata(props: {
     openGraph: {
       title: post.title,
       description: post.summary,
+      url: `${siteMetadata.siteUrl}/${post.slug}`,
       siteName: siteMetadata.title,
       locale: 'en_US',
       type: 'article',
       publishedTime: publishedAt,
       modifiedTime: modifiedAt,
-      url: './',
       images: ogImages,
       authors: authors.length > 0 ? authors : [siteMetadata.author],
     },
@@ -74,37 +75,42 @@ export async function generateMetadata(props: {
 }
 
 export const generateStaticParams = async () => {
-  return allBlogs.map((p) => ({ slug: p.slug.split('/').map((name) => decodeURI(name)) }))
+  return allBlogs.map((post) => ({
+    slug: post.slug.split('/').map((part) => decodeURI(part)),
+  }))
 }
 
-export default async function Page(props: { params: Promise<{ slug: string[] }> }) {
-  const params = await props.params
-  const slug = decodeURI(params.slug.join('/'))
-  // Filter out drafts in production
-  const sortedCoreContents = allCoreContent(sortPosts(allBlogs))
-  const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug)
-  if (postIndex === -1) {
-    return notFound()
-  }
+// ✅ FIXED Page: use `await params`
+export default async function Page({ params }: { params: Promise<{ slug: string[] }> }) {
+  const { slug } = await params
+  const decodedSlug = decodeURI(slug.join('/'))
 
-  const prev = sortedCoreContents[postIndex + 1]
-  const next = sortedCoreContents[postIndex - 1]
-  const post = allBlogs.find((p) => p.slug === slug) as Blog
-  const authorList = post?.authors || ['default']
+  const sortedPosts = allCoreContent(sortPosts(allBlogs))
+  const postIndex = sortedPosts.findIndex((p) => p.slug === decodedSlug)
+  if (postIndex === -1) return notFound()
+
+  const post = allBlogs.find((p) => p.slug === decodedSlug) as Blog
+  if (!post) return notFound()
+
+  const prev = sortedPosts[postIndex + 1]
+  const next = sortedPosts[postIndex - 1]
+
+  const authorList = post.authors || ['default']
   const authorDetails = authorList.map((author) => {
-    const authorResults = allAuthors.find((p) => p.slug === author)
-    return coreContent(authorResults as Authors)
+    const result = allAuthors.find((p) => p.slug === author)
+    return coreContent(result as Authors)
   })
+
   const mainContent = coreContent(post)
-  const jsonLd = post.structuredData
-  jsonLd['author'] = authorDetails.map((author) => {
-    return {
+  const jsonLd = {
+    ...post.structuredData,
+    author: authorDetails.map((author) => ({
       '@type': 'Person',
       name: author.name,
-    }
-  })
+    })),
+  }
 
-  const Layout = layouts[post.layout || defaultLayout]
+  const Layout = layouts[post.layout as keyof typeof layouts] || layouts[defaultLayout]
 
   return (
     <>

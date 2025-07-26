@@ -15,7 +15,6 @@ export default function Home({ posts }) {
         {/* 1. Intro Section */}
         {/* ------------------------- */}
         <section className="flex flex-col-reverse items-start justify-between gap-12 md:flex-row md:items-center">
-          {/* Text + Actions */}
           <div className="flex-1 space-y-5">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl dark:text-white">
               Hi, I’m Bidit 👋
@@ -23,7 +22,6 @@ export default function Home({ posts }) {
             <p className="text-lg leading-relaxed text-gray-600 dark:text-gray-400">
               {siteMetadata.description}
             </p>
-
             <div className="flex flex-wrap gap-4 pt-2">
               <a
                 href="/static/files/Bidit_Giri_CV.pdf"
@@ -42,7 +40,6 @@ export default function Home({ posts }) {
             </div>
           </div>
 
-          {/* Profile Image */}
           <div className="flex-shrink-0">
             <Image
               src="/static/images/avatar.png"
@@ -55,7 +52,7 @@ export default function Home({ posts }) {
         </section>
 
         {/* ------------------------- */}
-        {/* 2. Tech Stack */}
+        {/* 2. Tech Stack Section */}
         {/* ------------------------- */}
         <section>
           <h2 className="mb-8 flex items-center gap-3 text-3xl font-bold text-gray-900 dark:text-white">
@@ -126,23 +123,21 @@ export default function Home({ posts }) {
           <ul className="grid gap-10 pt-10 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-2">
             {!posts.length && 'No posts found.'}
             {posts.slice(0, MAX_DISPLAY).map((post) => {
-              const { slug, date, title, summary, tags, image } = post
+              const { slug, date, title, summary, tags, thumbnail } = post
 
               return (
                 <li
                   key={slug}
                   className="group overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg transition-all hover:shadow-xl dark:border-gray-700 dark:bg-gray-900"
                 >
-                  {/* Blog Image */}
                   <Link href={`/blog/${slug}`} className="block h-48 w-full overflow-hidden">
                     <img
-                      src={image || '/static/images/default-post.png'}
+                      src={thumbnail || '/static/images/default-thumbnail.jpg'}
                       alt={title}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </Link>
 
-                  {/* Content */}
                   <div className="p-6">
                     <time
                       dateTime={date}

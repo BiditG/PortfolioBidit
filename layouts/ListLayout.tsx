@@ -118,30 +118,42 @@ export default function ListLayout({
         <ul>
           {!filteredBlogPosts.length && 'No posts found.'}
           {displayPosts.map((post) => {
-            const { path, date, title, summary, tags } = post
+            const { path, date, title, summary, tags, images } = post
+            const thumbnail = Array.isArray(images) ? images[0] : undefined
+
             return (
               <li key={path} className="py-4">
-                <article className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                  <dl>
-                    <dt className="sr-only">Published on</dt>
-                    <dd className="text-base leading-6 font-medium text-gray-500 dark:text-gray-400">
-                      <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
-                    </dd>
-                  </dl>
-                  <div className="space-y-3 xl:col-span-3">
-                    <div>
-                      <h3 className="text-2xl leading-8 font-bold tracking-tight">
-                        <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
-                          {title}
-                        </Link>
-                      </h3>
-                      <div className="flex flex-wrap">
-                        {tags?.map((tag) => <Tag key={tag} text={tag} />)}
-                      </div>
+                <article className="flex flex-col gap-6 md:flex-row xl:items-center">
+                  {thumbnail && (
+                    <Link href={`/${path}`} className="flex-shrink-0">
+                      <img
+                        src={thumbnail}
+                        alt={`Thumbnail for ${title}`}
+                        className="w-full max-w-[300px] rounded-lg shadow-md transition-transform duration-300 hover:scale-105"
+                      />
+                    </Link>
+                  )}
+                  <div className="space-y-2">
+                    <dl>
+                      <dt className="sr-only">Published on</dt>
+                      <dd className="text-base text-gray-500 dark:text-gray-400">
+                        <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                      </dd>
+                    </dl>
+                    <h3 className="text-2xl leading-snug font-bold tracking-tight">
+                      <Link
+                        href={`/${path}`}
+                        className="hover:text-primary-500 text-gray-900 dark:text-gray-100"
+                      >
+                        {title}
+                      </Link>
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {tags?.map((tag) => (
+                        <Tag key={tag} text={tag} />
+                      ))}
                     </div>
-                    <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                      {summary}
-                    </div>
+                    <p className="text-gray-600 dark:text-gray-300">{summary}</p>
                   </div>
                 </article>
               </li>
