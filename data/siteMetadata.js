@@ -4,7 +4,7 @@ const siteMetadata = {
   author: 'Bidit Giri',
   headerTitle: 'Bidit Giri',
   description:
-    'Portfolio of Bidit Giri, an aspiring AI engineer building intelligent systems using machine learning to solve real-world challenges and create innovative solutions.',
+    'I design intelligent solutions using large language models and generative AI — turning ideas into powerful web and software experiences.',
   language: 'en-us',
   theme: 'system', // Options: 'system', 'dark', 'light'
   siteUrl: 'https://biditgiri.com.np',
