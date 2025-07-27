@@ -1,12 +1,12 @@
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
-import Logo from '@/data/logo.svg'
+import logo from '@/data/logo.png'
 import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 import { useEffect, useState } from 'react'
-
+import Image from 'next/image'
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
 
@@ -30,7 +30,9 @@ const Header = () => {
         {/* Logo + Title */}
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="flex items-center space-x-3">
-            <Logo
+            <Image
+              src={logo}
+              alt="Logo"
               className={`transition-all duration-300 ease-in-out ${
                 isScrolled ? 'h-6 w-6' : 'h-8 w-8'
               }`}

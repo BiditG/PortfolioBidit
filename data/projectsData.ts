@@ -21,7 +21,7 @@ const projectsData: Project[] = [
   {
     title: 'Stock Management Software',
     description: `A Python-based inventory management system designed for local businesses to manage stock levels, product categories, and sales efficiently.`,
-    imgSrc: '/static/images/stock-management.png',
+    imgSrc: '/static/images/stock-management-software.jpg',
     href: 'https://github.com/BiditG/Stock-management-software',
   },
   {
