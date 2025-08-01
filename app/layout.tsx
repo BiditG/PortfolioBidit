@@ -100,12 +100,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
         {/* ✅ AdSense script loaded properly from body — not head */}
-        <Script
+        <script
           async
-          strategy="afterInteractive"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2319126026055915"
           crossOrigin="anonymous"
-        />
+        ></script>
 
         <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />

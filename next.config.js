@@ -4,7 +4,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 
-// Updated CSP with Google AdSense domains
+// ✅ Updated CSP with all required Google AdSense domains
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app analytics.umami.is pagead2.googlesyndication.com www.googletagservices.com ep2.adtrafficquality.google;
@@ -13,8 +13,7 @@ const ContentSecurityPolicy = `
   media-src *.s3.amazonaws.com;
   connect-src *;
   font-src 'self';
-  frame-src giscus.app www.google.com www.googletagservices.com googleads.g.doubleclick.net;``
-
+  frame-src giscus.app www.google.com www.googletagservices.com googleads.g.doubleclick.net ep2.adtrafficquality.google;
 
 `
 
@@ -58,6 +57,7 @@ const unoptimized = process.env.UNOPTIMIZED ? true : undefined
  */
 module.exports = () => {
   const plugins = [withContentlayer, withBundleAnalyzer]
+
   return plugins.reduce((acc, next) => next(acc), {
     output,
     basePath,
