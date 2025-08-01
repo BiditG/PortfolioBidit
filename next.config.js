@@ -7,13 +7,15 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 // Updated CSP with Google AdSense domains
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app analytics.umami.is pagead2.googlesyndication.com www.googletagservices.com;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app analytics.umami.is pagead2.googlesyndication.com www.googletagservices.com ep2.adtrafficquality.google;
   style-src 'self' 'unsafe-inline';
   img-src * blob: data: https:;
   media-src *.s3.amazonaws.com;
   connect-src *;
   font-src 'self';
-  frame-src giscus.app www.google.com www.googletagservices.com;
+  frame-src giscus.app www.google.com www.googletagservices.com googleads.g.doubleclick.net;``
+
+
 `
 
 const securityHeaders = [
