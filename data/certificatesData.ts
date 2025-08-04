@@ -11,6 +11,16 @@ export interface Certificate {
 
 const certificatesData: Certificate[] = [
   {
+    title: 'Artificial Intelligence Fundamentals',
+    issuer: 'IBM SkillsBuild',
+    date: 'August 2025',
+    description:
+      'Foundational course covering key concepts in artificial intelligence, including machine learning, neural networks, and real-world applications.',
+    certUrl: 'https://www.credly.com/earner/earned/badge/95947545-d3fc-4f8b-b5c7-bdb414d510cc',
+    logoUrl: '/certificates/ai-fundamentals-ibm.png',
+  },
+
+  {
     title: 'Introduction to Machine Learning: Art of the Possible',
     issuer: 'AWS',
     date: 'July 2025',
