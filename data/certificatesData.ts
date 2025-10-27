@@ -19,6 +19,15 @@ const certificatesData: Certificate[] = [
     certUrl: 'https://www.credly.com/earner/earned/badge/95947545-d3fc-4f8b-b5c7-bdb414d510cc',
     logoUrl: '/certificates/ai-fundamentals-ibm.png',
   },
+  {
+    title: 'AWS AI Chips - Trainium and Inferentia Fundamentals',
+    issuer: 'AWS',
+    date: 'October 2025',
+    description:
+      'Comprehensive overview of AWS AI chips, including Trainium and Inferentia, focusing on their architecture, capabilities, and applications in accelerating machine learning workloads.',
+    certUrl: '',
+    logoUrl: '/certificates/AI-chips.png',
+  },
 
   {
     title: 'Introduction to Machine Learning: Art of the Possible',
